@@ -1,0 +1,371 @@
+/* CC4PMs Brand Colors */
+
+:root {
+  /* Primary */
+  --md-primary-fg-color: #e63f02;
+  --md-primary-fg-color--light: #ff6b35;
+  --md-primary-fg-color--dark: #b43200;
+  --md-primary-bg-color: #ffffff;
+  --md-primary-bg-color--light: #ffffff;
+
+  /* Accent */
+  --md-accent-fg-color: #e63f02;
+  --md-accent-fg-color--transparent: rgba(230, 63, 2, 0.1);
+  --md-accent-bg-color: #ffffff;
+}
+
+/* ——— Content width ——— */
+.md-grid {
+  max-width: 1440px;
+}
+
+/* ——— Dark mode ——— */
+[data-md-color-scheme="slate"] {
+  --md-default-bg-color: #1c1c1c;
+  --md-default-fg-color: #e0e0e0;
+  --md-default-fg-color--light: #a0a0a0;
+  --md-default-fg-color--lighter: #6b7280;
+  --md-default-fg-color--lightest: #374151;
+  --md-primary-fg-color: #ff6b35;
+  --md-accent-fg-color: #f4d35e;
+  --md-code-bg-color: #2a2a2a;
+}
+
+/* Dark mode header */
+[data-md-color-scheme="slate"] .md-header {
+  background-color: #0f172a;
+}
+
+[data-md-color-scheme="slate"] .md-tabs {
+  background-color: #0f172a;
+}
+
+/* Light mode header */
+.md-header {
+  background-color: #0f172a;
+}
+
+.md-tabs {
+  background-color: #0f172a;
+}
+
+/* ——— Typography ——— */
+
+/* Body text — slightly more breathing room */
+.md-typeset {
+  font-size: 0.82rem;
+  line-height: 1.7;
+}
+
+/* Headings — dark blue, tighter */
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3 {
+  color: #0f172a;
+}
+
+.md-typeset h1 {
+  font-weight: 700;
+  margin-bottom: 0.8em;
+}
+
+.md-typeset h2 {
+  font-weight: 700;
+  margin-top: 1.6em;
+  margin-bottom: 0.6em;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid rgba(0,0,0,0.12);
+}
+
+[data-md-color-scheme="slate"] .md-typeset h1,
+[data-md-color-scheme="slate"] .md-typeset h2,
+[data-md-color-scheme="slate"] .md-typeset h3 {
+  color: #e0e0e0;
+}
+
+[data-md-color-scheme="slate"] .md-typeset h2 {
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.md-typeset h3 {
+  font-weight: 600;
+  margin-top: 1.2em;
+  margin-bottom: 0.4em;
+}
+
+/* Paragraphs — more space between them */
+.md-typeset p {
+  margin-bottom: 1em;
+}
+
+/* ——— Code blocks — chunkier, more prominent ——— */
+.md-typeset code {
+  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
+  font-size: 0.92em;
+  font-weight: 500;
+  padding: 0.2em 0.45em;
+  border-radius: 4px;
+  letter-spacing: -0.01em;
+}
+
+.md-typeset pre {
+  border-radius: 8px;
+  margin: 1.2em 0;
+}
+
+.md-typeset pre > code {
+  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
+  font-size: 0.82em;
+  font-weight: 400;
+  line-height: 1.7;
+  padding: 1.2em 1.4em;
+  letter-spacing: -0.01em;
+}
+
+/* ——— Mermaid diagrams — large and prominent ——— */
+.md-typeset .mermaid {
+  margin: 1.5em 0;
+  text-align: center;
+  padding: 1em 1em;
+  background: rgba(0,0,0,0.03);
+  border-radius: 8px;
+  overflow: visible;
+}
+
+[data-md-color-scheme="slate"] .md-typeset .mermaid {
+  background: rgba(255,255,255,0.03);
+}
+
+.md-typeset .mermaid svg {
+  max-width: 100%;
+  min-height: 100px;
+  font-size: 18px !important;
+}
+
+/* Force larger text in mermaid nodes */
+.mermaid .nodeLabel {
+  font-size: 15px !important;
+}
+
+.mermaid .edgeLabel {
+  font-size: 13px !important;
+}
+
+/* ——— Tables ——— */
+
+.md-typeset table:not([class]) {
+  margin: 1.5em 0;
+  border-collapse: collapse;
+  font-size: 0.85em;
+  width: 100%;
+}
+
+/* Header row */
+.md-typeset table:not([class]) thead th {
+  background-color: rgba(230, 63, 2, 0.06);
+  font-weight: 700;
+  border-bottom: 2px solid #e63f02;
+  padding: 0.9rem 1.1rem;
+  text-align: left;
+  white-space: nowrap;
+}
+
+[data-md-color-scheme="slate"] .md-typeset table:not([class]) thead th {
+  background-color: rgba(255, 107, 53, 0.1);
+  border-bottom: 2px solid #ff6b35;
+}
+
+/* First column emphasis */
+.md-typeset table:not([class]) tbody td:first-child {
+  font-weight: 600;
+}
+
+/* Cell padding */
+.md-typeset table:not([class]) th,
+.md-typeset table:not([class]) td {
+  padding: 0.85rem 1.1rem;
+  vertical-align: top;
+}
+
+/* Alternating rows */
+.md-typeset table:not([class]) tbody tr:nth-child(even) {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+[data-md-color-scheme="slate"] .md-typeset table:not([class]) tbody tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+/* Table borders */
+.md-typeset table:not([class]) td {
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+[data-md-color-scheme="slate"] .md-typeset table:not([class]) td {
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+/* ——— Admonitions ——— */
+
+/* More padding, cleaner look */
+.md-typeset .admonition,
+.md-typeset details {
+  margin: 1.5em 0;
+  border-radius: 6px;
+  font-size: 0.9em;
+}
+
+.md-typeset .admonition > p,
+.md-typeset details > p {
+  margin: 0.5em 0;
+}
+
+/* Tip styling */
+.md-typeset .admonition.tip,
+.md-typeset details.tip {
+  border-color: #e63f02;
+}
+
+.md-typeset .tip > .admonition-title,
+.md-typeset .tip > summary {
+  background-color: rgba(230, 63, 2, 0.1);
+  border-color: #e63f02;
+}
+
+/* Example styling */
+.md-typeset .admonition.example,
+.md-typeset details.example {
+  border-color: #f4d35e;
+}
+
+.md-typeset .example > .admonition-title,
+.md-typeset .example > summary {
+  background-color: rgba(244, 211, 94, 0.1);
+  border-color: #f4d35e;
+}
+
+/* Info box — brand-colored instead of default teal */
+.md-typeset .admonition.info,
+.md-typeset details.info {
+  border-color: #e63f02;
+}
+
+.md-typeset .info > .admonition-title,
+.md-typeset .info > summary {
+  background-color: rgba(230, 63, 2, 0.08);
+  border-color: #e63f02;
+}
+
+.md-typeset .info > .admonition-title::before,
+.md-typeset .info > summary::before {
+  background-color: #e63f02;
+}
+
+[data-md-color-scheme="slate"] .md-typeset .admonition.info {
+  border-color: #ff6b35;
+}
+
+[data-md-color-scheme="slate"] .md-typeset .info > .admonition-title {
+  background-color: rgba(255, 107, 53, 0.1);
+  border-color: #ff6b35;
+}
+
+[data-md-color-scheme="slate"] .md-typeset .info > .admonition-title::before {
+  background-color: #ff6b35;
+}
+
+/* Quick Answer info box — each line as its own block */
+.md-typeset .admonition.info p {
+  margin: 0.6em 0;
+  line-height: 1.6;
+}
+
+/* ——— Blockquotes (skill callouts) ——— */
+.md-typeset blockquote {
+  border-left: 3px solid #e63f02;
+  padding: 1em 1.2em;
+  margin: 1.5em 0;
+  background: rgba(230, 63, 2, 0.03);
+  border-radius: 0 6px 6px 0;
+}
+
+[data-md-color-scheme="slate"] .md-typeset blockquote {
+  background: rgba(255, 107, 53, 0.05);
+  border-left-color: #ff6b35;
+}
+
+.md-typeset blockquote p {
+  margin: 0.3em 0;
+}
+
+/* ——— Horizontal rules ——— */
+.md-typeset hr {
+  display: none;
+}
+
+
+/* ——— Links ——— */
+.md-typeset a {
+  color: #e63f02;
+}
+
+[data-md-color-scheme="slate"] .md-typeset a {
+  color: #ff6b35;
+}
+
+/* ——— Sidebar ——— */
+
+/* Nested nav items get a left border line */
+.md-sidebar--primary .md-nav__item--nested .md-nav .md-nav__list {
+  border-left: 3px solid rgba(230, 63, 2, 0.35);
+  padding-left: 0.7rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  margin-top: 0.1rem;
+  margin-bottom: 0.1rem;
+}
+
+/* Light mode sidebar */
+.md-sidebar {
+  background-color: #ffffff;
+}
+
+[data-md-color-scheme="slate"] .md-sidebar--primary .md-nav__item--nested .md-nav .md-nav__list {
+  border-left-color: rgba(255, 107, 53, 0.3);
+}
+
+[data-md-color-scheme="slate"] .md-sidebar {
+  background-color: #1a1a1a;
+}
+
+/* ——— Mermaid dark mode ——— */
+[data-md-color-scheme="slate"] .mermaid {
+  filter: invert(0);
+}
+
+/* ——— Warning/limitation boxes — slightly more prominent ——— */
+.md-typeset .admonition.warning {
+  border-width: 2px;
+}
+
+/* ——— Lists — better spacing ——— */
+.md-typeset ul li,
+.md-typeset ol li {
+  margin-bottom: 0.4em;
+}
+
+/* ——— Bold text in tables — prevent awkward wrapping ——— */
+.md-typeset table strong {
+  white-space: nowrap;
+}
+
+/* ——— Inline code — subtle background pop ——— */
+.md-typeset :not(pre) > code {
+  background-color: rgba(230, 63, 2, 0.06);
+  color: #c43e00;
+}
+
+[data-md-color-scheme="slate"] .md-typeset :not(pre) > code {
+  background-color: rgba(255, 107, 53, 0.1);
+  color: #ff8c57;
+}
