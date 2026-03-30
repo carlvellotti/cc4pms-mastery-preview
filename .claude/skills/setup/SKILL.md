@@ -131,9 +131,43 @@ Read `~/.claude/settings.json` first. Then check for existing customizations bef
 
 **IMPORTANT:** Do NOT overwrite existing settings. Read the file first, merge these keys in, and write the result back. If a key like `hooks` or `enabledPlugins` already exists, keep it.
 
-### 6. Confirm
+### 6. Detect environment
 
-Tell the student:
+After applying settings, detect what the student is running Claude Code in.
+
+Run: `echo "TERM_PROGRAM=$TERM_PROGRAM"; env | grep -qi cursor && echo "CURSOR=true" || echo "CURSOR=false"`
+
+If TERM_PROGRAM is empty and CURSOR is false, also check if Nimbalyst MCP tools are available (look for `mcp__nimbalyst` in available tools or check if the system context mentions Nimbalyst).
+
+Write the detected environment to the config file. Read `.claude/cc4pms-config.json` and add an `"environment"` key:
+- `"cursor"` if Cursor detected
+- `"vscode"` if VS Code detected
+- `"nimbalyst"` if Nimbalyst detected
+- `"terminal"` if a terminal app (iTerm, Terminal.app, Warp, etc.)
+- `"unknown"` if can't determine
+
+### 7. Confirm
+
+If the environment is **Nimbalyst**, tell the student:
+
+```
+🥞 You're all set!
+
+  ✓ Created your student profile
+  ✓ Installed the course status line
+  ✓ Configured custom spinner text
+  ✓ Set up course navigation tips
+```
+
+Then add: "I noticed you're using Nimbalyst. I just made some customizations that you'll only see if you use the Claude Code CLI inside a terminal. The official recommendation for this course is to use Claude Code inside of Cursor. You don't need to switch, but if you do, here's what you'd get:"
+
+- **Custom status line** showing your current lesson, context usage, and clickable reference doc links
+- **PM-themed spinner verbs** while Claude is thinking
+- **Course tips** pointing to useful commands
+
+"Some non-critical features may also not work as expected in Nimbalyst (like background agents and MCP management). Everything core to the lessons will still work."
+
+If the environment is **anything else**, just show:
 
 ```
 🥞 You're all set!

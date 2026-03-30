@@ -80,7 +80,23 @@ Wait for them to run it. Once it's done, continue.
 printf '{"module":"Core","lesson":"L1","lesson_name":"Welcome to CC4PMs","reference_pages":[{"name":"Start Here","path":"index.html"}]}' > .claude/cc4pms-progress.json
 ```
 
-Whether they just ran it or already had it, walk through what's now configured. Start with the status line since they can see it right now. Tell them to look at the bottom of their terminal:
+Read `.claude/cc4pms-config.json` to check the `environment` field that `/setup` detected. If it's not there, run the detection: `echo "TERM_PROGRAM=$TERM_PROGRAM"; env | grep -qi cursor && echo "CURSOR=true" || echo "CURSOR=false"` — and if both are empty, check for Nimbalyst MCP tools.
+
+### If Nimbalyst:
+
+Tell the student: "The official recommendation for this course is to use Claude Code inside Cursor. That's what Carl uses. You don't need to switch, but here's what you'd get in the CLI that you won't see in Nimbalyst:"
+
+- **Custom status line** — shows your current lesson, context usage, and clickable reference doc links at the bottom of your terminal
+- **PM-themed spinner verbs** — the loading text while Claude is thinking says things like "stakeholdering" and "pretending the roadmap is real"
+- **Course tips** — tips that appear while working point to useful course commands
+
+"Some non-critical features like background agents and MCP management may also not work in Nimbalyst. Everything core to the lessons will still work. All customizations are installed in case you switch to the CLI later."
+
+Skip Layout and Line height — go straight to Permissions and model below.
+
+### If Cursor / VS Code / Terminal / Unknown:
+
+Walk through what setup configured. Start with the status line since they can see it right now. Tell them to look at the bottom of their terminal:
 
 Print this in a code block:
 
@@ -103,27 +119,15 @@ Then mention the other things setup configured:
 
 All of these are customizable — if you ever want to change your spinner verbs, update the status line, or tweak anything else, just ask.
 
-Ask: **"All make sense? Any questions about the setup?"**
+Also note which environment they're in:
+- **Cursor**: You're in Cursor — that's the official recommendation for this course.
+- **VS Code**: Works great. Cursor is the official recommendation if you ever want to switch, but VS Code is perfectly fine.
+- **Terminal app**: That works, but you'll miss having a file explorer alongside. Suggest Cursor or VS Code.
+- **Unknown**: Ask what they're using.
 
----
+### Layout (skip if Nimbalyst)
 
-## **Environment Check**
-
-Tell the student: let me check what you're running Claude Code in.
-
-Run this silently: `echo "TERM_PROGRAM=$TERM_PROGRAM"; env | grep -qi cursor && echo "CURSOR=true" || echo "CURSOR=false"`
-
-This tells you both what terminal/IDE they're in AND whether it's Cursor (which reports as `vscode` under the hood). Use both signals:
-
-Based on the result:
-- **Cursor detected**: Tell them: you're in Cursor — that's the official recommendation for this course. Full-featured Claude Code with a file explorer right next to you.
-- **`vscode` (no Cursor vars)**: Tell them: you're in VS Code — works great. Same setup as Cursor for our purposes. (Mention that Cursor is the official recommendation if they ever want to switch, but VS Code is perfectly fine.)
-- **Terminal app (iTerm, Terminal.app, Warp, etc.)**: Tell them: you're running Claude Code directly in a terminal. That works, but you'll miss having a file explorer alongside. If you have Cursor or VS Code, running Claude Code in their terminal gives a nicer experience for this course.
-- **Can't determine / other**: Ask what they're using. If it's Nimblist, tell them: "You may be using Nimblist from a past recommendation. My official recommendation now is to use an IDE like Cursor with the CLI — it gives you the most features and stays up to date. You can absolutely do this course in Nimblist, but some features may not work as expected."
-
-### Layout
-
-If they're in an IDE, show the ideal layout:
+Show the ideal layout:
 
 ```
 ┌──────────┬──────────────────┬─────────────────┐
@@ -137,9 +141,9 @@ If they're in an IDE, show the ideal layout:
 
 Tell them: file explorer on the left, editor in the middle, and terminal on the right taking up a good chunk of the screen. In Cursor or VS Code, you can right-click the terminal panel header → "Panel Position" → Right. Then drag it wider. The wider the terminal, the better tables and diagrams render.
 
-### Line height
+### Line height (skip if Nimbalyst)
 
-Tell them: one thing that makes a big difference for readability is terminal line height. The default is too tight — set it to around 1.3.
+One thing that makes a big difference for readability is terminal line height. The default is too tight — set it to around 1.3.
 
 Based on their detected IDE:
 - **Cursor/VS Code**: Settings → search "line height" → "Terminal > Integrated: Line Height" → set to 1.3
@@ -150,11 +154,13 @@ Ask: **"Want to set your line height now? I can wait while you do it."**
 
 Wait for their response. If yes, give them a moment. If no, move on.
 
-### Permissions
+### Permissions and model (everyone)
 
-Tell the student: one more setup tip. During this course, I'll be creating and editing files, running commands, and doing things that Claude Code normally asks your permission for. To keep things flowing smoothly, I'd recommend running in `acceptEdits` mode — that lets me edit files without prompting you every time, while still asking before running commands. You can set this by typing `/permissions` and selecting `acceptEdits`. Or if you want zero interruptions, you can restart Claude Code with `claude --dangerously-skip-permissions` — totally safe in a course repo like this.
+**Permissions**: During this course, I'll be creating and editing files, running commands, and doing things that Claude Code normally asks your permission for. To keep things flowing smoothly, I'd recommend running in `acceptEdits` mode — that lets me edit files without prompting you every time, while still asking before running commands. You can set this by typing `/permissions` and selecting `acceptEdits`. Or if you want zero interruptions, you can restart Claude Code with `claude --dangerously-skip-permissions` — totally safe in a course repo like this.
 
-Ask: **"All good with your environment? Ready to see what's in the course?"**
+**Model**: You can run this course on Sonnet 4.6 in medium thinking mode to save tokens — the lessons work fine on it. Use `/model` to switch. Opus gives the best experience but isn't required.
+
+Ask: **"All good with your setup? Ready to see what's in the course?"**
 
 ---
 
@@ -301,7 +307,7 @@ Ask: **"Any questions about these before we wrap up?"**
 
 ## **Closing**
 
-Tell the student: that wraps up the preview lesson! Here's what you covered:
+Tell the student: that wraps up lesson 1. Here's what you covered:
 
 - Got your environment set up — status line, spinner verbs, course tips, layout
 - Core covers CLAUDE.md, sub-agents, skills, MCPs, and building a PM OS
@@ -311,11 +317,18 @@ Tell the student: that wraps up the preview lesson! Here's what you covered:
 
 Frame the sendoff with energy: that was just the first of 6 Core lessons. The next one dives into CLAUDE.md — the single most important file in Claude Code. Then sub-agents, skills, connecting Claude to everything, and pulling it all together into a PM operating system. And that's just the foundation — there are full modules on research, building, data, documents, and more after that.
 
-If you want to quiz yourself on what we covered, run `/quiz-me`.
+- The reference docs for this lesson are available via `/reference`
+- If you want to quiz yourself on what we covered, run `/quiz-me`
 
-Then present the signup pitch:
+Otherwise, use `/clear` first, then:
 
-The next wave of the full course starts late April / early May. If you'd like to secure your spot, there's an exclusive discount — **$100 off for $200** (the lowest this offer will ever be), only available until the course is fully launched:
+`/start-core-2`
+
+---
+
+If you've been enjoying the course and want to keep going, the full CC4PMs Mastery course continues beyond Core with the PM Track (Research, Builder, Data, Docs) and the Power User Track (Skills, Personal OS, Workplace OS). The next wave starts late April / early May.
+
+Secure your spot — **$100 off for $200** (the lowest this offer will ever be), only available until the course is fully launched:
 
 **https://buy.stripe.com/8x214m8YD5rkcj6fpeejK01?prefilled_promo_code=EARLYAPPLICANT**
 
@@ -331,9 +344,9 @@ This gets you:
 ## Edge Cases
 
 - **Student hasn't done the free course:** Don't gatekeep. Mention that the free intro course exists and covers fundamentals, but Core will teach them what they need.
-- **Student asks about more lessons:** "This is a preview of the first lesson. The full course has 35+ lessons across 8 modules. The link above gets you in."
+- **Student wants to skip ahead:** Let them. "Totally fine — run `/start-core-2` and let's go."
 - **Student asks detailed questions about a specific module:** Give a 1-2 sentence answer. "The full course covers that in depth."
 - **Student already has an advanced Claude Code setup:** Acknowledge it. They'll still pick up techniques and the system-building approach is valuable even for power users.
 - **Setup fails or student has unusual settings:** Don't force anything. If something doesn't work, move on and note that they can run `/setup` separately later.
-- **Student is using Nimblist:** Don't discourage it, but note the official recommendation is an IDE with the CLI for the fullest feature set. Some things may not work as expected in Nimblist.
+- **Student is using Nimbalyst:** Don't discourage it, but note the official recommendation is an IDE with the CLI for the fullest feature set. Some things may not work as expected in Nimbalyst.
 - **Student is not in an IDE:** Layout and line height instructions won't apply the same way. Adapt advice for their terminal. Everything still works, they just won't have a file explorer alongside.
